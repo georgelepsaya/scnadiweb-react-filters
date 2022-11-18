@@ -6,6 +6,7 @@ export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 415px;
   height: auto;
   width: 20%;
   min-width: 350px;
@@ -18,7 +19,7 @@ export const FilterTitle = styled.span`
   color: #000;
   font-size: 22px;
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
 // Select Filter Styles
@@ -78,8 +79,8 @@ export const AttributeContainer = styled.div`
 `;
 
 export const ColorOption = styled.div`
-  height: 25px;
-  width: 25px;
+  height: 28px;
+  width: 28px;
   border: 1px solid #1d1f22;
   box-sizing: border-box;
   margin-right: 12px;
@@ -102,6 +103,13 @@ export const ColorOption = styled.div`
   &:last-of-type {
     margin-right: 0;
   }
+`;
+
+export const Picker = styled.div`
+  border: 1px solid #5ece7b;
+  width: 30px;
+  height: 30px;
+  position: absolute;
 `;
 
 export const ColorsPick = styled.div`

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { FilterContainer, FilterTitle, AttributeSelect, AttributeOption, SetFiltersContainer, SelectFilter, SelectIcon, AttributeTitle, AttributeContainer, ColorOption, ColorsPick } from './styles.js';
-import CheckBox from './CheckBox/CheckBox.jsx';
-import arrow from "../../icons/arrow-down.svg";
+import { FilterContainer, FilterTitle, SetFiltersContainer, AttributeTitle, AttributeContainer } from './styles.js';
+import AttributeFilterText from './AttributeFilterText.jsx';
+import AttributeFilterColor from "./AttributeFilterColor.jsx";
+import AttributeFilterCheck from './AttributeFilterCheck.jsx';
 import withParams from '../withParams.jsx';
 
 class FilterBar extends Component {
   render() {
     // getting attributes from HOC
     const products = this.props.attributes.category.products;
-
     // adding them in a readable way in a new object
     const attributes = {};
     products.forEach(attrs => {
@@ -16,10 +16,6 @@ class FilterBar extends Component {
         attributes[attr.name] = [attr.type, attr.items];
       })
     });
-    for (const key in attributes) {
-      console.log(key, attributes[key]);
-    }
-    console.log(products);
     return (
       <FilterContainer>
         <FilterTitle>Filter Products</FilterTitle>
@@ -29,43 +25,15 @@ class FilterBar extends Component {
               const attr = attributes[key];
               if (attr[0] === "text" && attr[1][0].value !== "Yes") {
                 return (
-                  <AttributeContainer key={i}>
-                    <AttributeTitle>{key}</AttributeTitle>
-                    <SelectFilter>
-                      <AttributeSelect>
-                      {
-                        attr[1].map(atr => {
-                          return (
-                            <AttributeOption key={atr.id}>{atr.displayValue}</AttributeOption>
-                          )
-                        })
-                      }
-                    </AttributeSelect>
-                    <SelectIcon src={arrow} />
-                    </SelectFilter>
-                  </AttributeContainer>
+                  <AttributeFilterText updateParamsObj={this.updateParamsObj} key={i} title={key} attr={attr} />
                 )
               } else if (attr[0] === "swatch") {
                 return (
-                  <AttributeContainer>
-                    <AttributeTitle>{key}</AttributeTitle>
-                    <ColorsPick>
-                      {
-                        attr[1].map(atr => {
-                          return (
-                            <ColorOption key={atr.id} bg={atr.value} isWhite={atr.displayValue === "White"} />
-                          )
-                        })
-                      }
-                    </ColorsPick>
-                  </AttributeContainer>
+                  <AttributeFilterColor key={i} title={key} attr={attr}/>
                 )
               } else if (attr[0] === "text" && attr[1][0].value === "Yes") {
                 return (
-                  <AttributeContainer>
-                    <AttributeTitle>{key}</AttributeTitle>
-                    <CheckBox/>
-                  </AttributeContainer>
+                  <AttributeFilterCheck title={key} attr={attr} />
                 )
               }
             })

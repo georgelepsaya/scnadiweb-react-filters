@@ -5,6 +5,7 @@ import currencyReducer from "./features/currency/currencySlice";
 import minicartBackdropReducer from "./features/backdrops/minicartBackdrop";
 import currenciesBackdropReducer from "./features/backdrops/currenciesBackdrop";
 import setPageReducer from "./features/set_page/setPageSlice";
+import setFiltersReducer from "./features/set_filters/setFiltersSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   currency: currencyReducer,
   minicartBackdrop: minicartBackdropReducer,
   currenciesBackdrop: currenciesBackdropReducer,
+  setFilters: setFiltersReducer,
 });
 
 const persistConfig = {

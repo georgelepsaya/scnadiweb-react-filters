@@ -22,7 +22,7 @@ class MainWrap extends Component {
 
   render() {
       return (
-        <Router>
+        <>
           <Navbar mainRef={this.myRef} />
           <MainContainer ref={this.myRef} id="main">
               <Routes>
@@ -35,7 +35,7 @@ class MainWrap extends Component {
               </Routes>
           </MainContainer>
           <Footer />
-        </Router>
+        </>
       );
   }
 };

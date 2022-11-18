@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { calculateTotals } from "../features/cart/cartSlice";
 import { GET_CATEGORIES, GET_CATEGORY, GET_CURRENCIES, GET_PRODUCT, GET_ATTRIBUTES } from "../GraphQL/Queries";
@@ -11,6 +11,8 @@ function withParams(Component, properties, toFetch) {
     // useEffect(() => {
     //   console.clear();
     // }, [])
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // Calculating Totals
     const { cartItems } = useSelector((store) => store.cart);
@@ -92,10 +94,10 @@ function withParams(Component, properties, toFetch) {
       selectedProperties[prop] = selected;
     })
 
-    if (loadingCategory || loadingProduct || loadingCategories || loadingCurrencies) {
+    if (loadingCategory || loadingProduct || loadingCategories || loadingCurrencies || loadingAttributes) {
       return ""
     } else {
-      return <Component {...props} params={useParams()} dispatch={useDispatch()} {...selectedProperties} categories={categories} categoryData={category} onlyProduct={singleProduct} attributes={attributes} currs={currencies.currencies} />
+      return <Component {...props} params={useParams()} dispatch={useDispatch()} {...selectedProperties} categories={categories} categoryData={category} onlyProduct={singleProduct} attributes={attributes} currs={currencies.currencies} setSearchParams={setSearchParams} searchParams={searchParams} />
     }
   }
 }
