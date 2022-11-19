@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import arrow from "../../icons/arrow-down.svg";
 import { AttributeSelect, AttributeOption, SelectFilter, SelectIcon, AttributeTitle, AttributeContainer } from './styles.js';
-import { updateParams } from '../../features/set_filters/setFiltersSlice';
+import { updateParams, removeParam } from '../../features/set_filters/setFiltersSlice';
 import withParams from '../withParams';
 
 class AttributeFilterText extends Component {
 
   handleSelectAttr(e) {
     const updObj = {};
-    updObj[this.props.title.toLowerCase().replaceAll(' ', '_')] = e.target.value;
-    this.props.dispatch(updateParams(updObj));
-    this.props.setSearchParams({ ...this.props.setFilters.paramsObj, ...updObj });
+    const keyParam = this.props.title.toLowerCase().replaceAll(' ', '_');
+    if (e.target.value != "") {
+      updObj[keyParam] = e.target.value;
+      this.props.dispatch(updateParams(updObj));
+      this.props.setSearchParams({ ...this.props.setFilters.paramsObj, ...updObj });
+    } else {
+      const parObj = {...this.props.setFilters.paramsObj};
+      this.props.dispatch(removeParam(keyParam));
+      delete parObj[keyParam];
+      this.props.setSearchParams({ ...parObj });
+    }
   }
 
   render() {
@@ -18,7 +26,8 @@ class AttributeFilterText extends Component {
       <AttributeContainer key={this.props.key}>
         <AttributeTitle>{this.props.title}</AttributeTitle>
           <SelectFilter>
-            <AttributeSelect onChange={(e) => this.handleSelectAttr(e)}>
+          <AttributeSelect onChange={(e) => this.handleSelectAttr(e)}>
+            <AttributeOption value="">Select {this.props.title}</AttributeOption>
               {
                 this.props.attr[1].map(atr => {
                   return (

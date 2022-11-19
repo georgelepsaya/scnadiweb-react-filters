@@ -6,7 +6,7 @@ export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 415px;
+  max-height: 500px;
   height: auto;
   width: 20%;
   min-width: 350px;
@@ -114,4 +114,17 @@ export const Picker = styled.div`
 
 export const ColorsPick = styled.div`
   display: flex;
+`;
+
+export const ClearFiltersBtn = styled.button`
+  width: 292px;
+  background: rgba(94, 206, 123, 1);
+  border: none;
+  padding: 16px 32px;
+  color: #fff;
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin: auto 0 28px 0;
 `;

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { FilterContainer, FilterTitle, SetFiltersContainer, AttributeTitle, AttributeContainer } from './styles.js';
+import { FilterContainer, FilterTitle, SetFiltersContainer, AttributeTitle, AttributeContainer, ClearFiltersBtn } from './styles.js';
 import AttributeFilterText from './AttributeFilterText.jsx';
 import AttributeFilterColor from "./AttributeFilterColor.jsx";
 import AttributeFilterCheck from './AttributeFilterCheck.jsx';
 import withParams from '../withParams.jsx';
+import { clearParams } from '../../features/set_filters/setFiltersSlice.js';
 
 class FilterBar extends Component {
   render() {
     // getting attributes from HOC
     const products = this.props.attributes.category.products;
     // adding them in a readable way in a new object
+    console.log(products);
     const attributes = {};
     products.forEach(attrs => {
       attrs.attributes.forEach(attr => {
@@ -39,6 +41,10 @@ class FilterBar extends Component {
             })
           }
         </SetFiltersContainer>
+        <ClearFiltersBtn onClick={() => {
+          this.props.dispatch(clearParams());
+          this.props.setSearchParams({});
+        }}>Clear Fitlers</ClearFiltersBtn>
       </FilterContainer>
     )
   }

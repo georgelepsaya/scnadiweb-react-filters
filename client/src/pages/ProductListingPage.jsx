@@ -140,6 +140,29 @@ export class ProductListingPage extends Component {
   render() {
     const products = this.props.categoryData.category.products;
     const curr = this.props.currency.currency;
+    const params = [];
+    // this.props.searchParams.forEach((value, key) => {
+    //   params.push([key, value]);
+    // });
+    // console.log(products);
+    // if (params.length !== 0) {
+    //   products.filter(product => {
+    //     if (product.attributes.length != 0) {
+    //       for (let attr of product.attributes) { 
+    //         for (let i of attr.items) {
+    //           const keyAttr = attr.name.toLowerCase().replaceAll(" ", "_");
+    //           let displayVal = i.displayValue;
+    //           if (keyAttr == "color") {
+    //             displayVal = i.displayValue.toLowerCase();
+    //           }
+    //           params.forEach(param => {
+    //             return param === [keyAttr, displayVal];
+    //           })
+    //         }
+    //       }
+    //     }
+    //   })
+    // }
     return (
       <RouteContainer>
         <FilterBar />
