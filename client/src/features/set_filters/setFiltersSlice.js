@@ -11,9 +11,12 @@ const setFiltersSlice = createSlice({
     updateParams: (state, action) => {
       state.paramsObj = { ...state.paramsObj, ...action.payload };
     },
+    clearParams: (state, action) => {
+      state.paramsObj = {};
+    },
   },
 });
 
-export const { updateParams } = setFiltersSlice.actions;
+export const { updateParams, clearParams } = setFiltersSlice.actions;
 
 export default setFiltersSlice.reducer;

@@ -8,6 +8,7 @@ import { updatePage } from '../../features/set_page/setPageSlice';
 import { toggleMinicartModal } from '../../features/backdrops/minicartBackdrop';
 import { toggleCurrenciesModal } from '../../features/backdrops/currenciesBackdrop';
 import withParams from '../withParams';
+import { clearParams } from '../../features/set_filters/setFiltersSlice';
 
 const Container = styled.div`
   height: 80px;
@@ -86,6 +87,7 @@ export class Navbar extends Component {
                 return (
                   <MenuItem key={page.name} onClick={() => {
                     this.props.dispatch(updatePage(page.name));
+                    this.props.dispatch(clearParams());
                     if (this.props.currenciesBackdrop.showCurrenciesBackdrop) {
                       this.props.dispatch(toggleCurrenciesModal());
                     }
