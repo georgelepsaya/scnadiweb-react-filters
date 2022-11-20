@@ -7,15 +7,6 @@ import { removeParam } from '../../../features/set_filters/setFiltersSlice';
 class CheckBox extends Component {
   checkHandler() {
     const title = this.props.title.toLowerCase().replaceAll(' ', '_');
-    // if (!this.props.setFilters.paramsObj[title]) {
-    //   const newParam = {};
-    //   newParam[this.props.title.toLowerCase().replaceAll(' ', '_')] = !this.state.isChecked;
-    //   this.props.setSearchParams({...this.props.setFilters.paramsObj, ...newParam});
-    //   this.props.dispatch(updateParams(newParam));
-    //   this.setState(prevState => {
-    //     return {...prevState, isChecked: !prevState.isChecked};
-    //   })
-    // }
     const value = this.props.attr.value;
     const paramsCheck = this.props.setFilters.paramsObj[title];
     if (!paramsCheck) {
@@ -42,12 +33,10 @@ class CheckBox extends Component {
 
   render() {
     const title = this.props.title.toLowerCase().replaceAll(' ', '_');
-    console.log(this.props.setFilters.paramsObj[title]);
     return (
       <Container id={this.props.attr.value}>
       <CheckWrapper>
           <CheckInput onClick={() => this.checkHandler()} checked={(this.props.setFilters.paramsObj[title] === this.props.attr.value) || (this.props.setFilters.paramsObj[title] === "YesNo") || (this.props.setFilters.paramsObj[title] === "NoYes") ? true : false} />
-          {/* <CheckInput onClick={() => this.checkHandler()} checked={this.props.setFilters.paramsObj[title] ? true : false} /> */}
           <CheckLabel>{this.props.attr.value}</CheckLabel>
       </CheckWrapper>
     </Container>

@@ -22,11 +22,12 @@ class AttributeFilterText extends Component {
   }
 
   render() {
+    const title = this.props.title.toLowerCase().replaceAll(' ', '_');
     return (
       <AttributeContainer key={this.props.key}>
         <AttributeTitle>{this.props.title}</AttributeTitle>
           <SelectFilter>
-          <AttributeSelect onChange={(e) => this.handleSelectAttr(e)}>
+          <AttributeSelect onChange={(e) => this.handleSelectAttr(e)} value={this.props.setFilters.paramsObj[title]}>
             <AttributeOption value="">Select {this.props.title}</AttributeOption>
               {
                 this.props.attr[1].map(atr => {

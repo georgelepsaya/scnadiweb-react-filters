@@ -117,6 +117,23 @@ const MainContainer = styled.div`
   `}
 `
 
+const equalArrs = (arr1, arr2) => {
+  if (arr1 === arr2) return true;
+  for (let i = 0; i < arr1.length; ++i) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
+
+const isInArr = (arr, ext) => {
+  for (let a of ext) {
+    if (equalArrs(a, arr)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export class ProductListingPage extends Component {
   addProductHandler(pr) {
     const product = JSON.parse(JSON.stringify(pr));
@@ -138,31 +155,47 @@ export class ProductListingPage extends Component {
   }
 
   render() {
-    const products = this.props.categoryData.category.products;
+    const allProducts = this.props.categoryData.category.products;
+    const prids = [];
     const curr = this.props.currency.currency;
     const params = [];
-    // this.props.searchParams.forEach((value, key) => {
-    //   params.push([key, value]);
-    // });
-    // console.log(products);
-    // if (params.length !== 0) {
-    //   products.filter(product => {
-    //     if (product.attributes.length != 0) {
-    //       for (let attr of product.attributes) { 
-    //         for (let i of attr.items) {
-    //           const keyAttr = attr.name.toLowerCase().replaceAll(" ", "_");
-    //           let displayVal = i.displayValue;
-    //           if (keyAttr == "color") {
-    //             displayVal = i.displayValue.toLowerCase();
-    //           }
-    //           params.forEach(param => {
-    //             return param === [keyAttr, displayVal];
-    //           })
-    //         }
-    //       }
-    //     }
-    //   })
-    // }
+    const allProdAttrs = [];
+    this.props.searchParams.forEach((value, key) => {
+      if (value === "YesNo" || value === "NoYes") {
+        params.push([key, "Yes"]);
+        params.push([key, "No"]);
+      } else {
+        params.push([key, value]);
+      }
+    });
+    allProducts.map(product => {
+      const prodAttrs = [];
+      product.attributes.map(attr => {
+        attr.items.map(item => {
+          let attrValue = item.displayValue;
+          if (attr.name === "Color") {
+            attrValue = item.displayValue.toLowerCase();
+          }
+          const attrPair = [attr.name.toLowerCase().replaceAll(" ", "_"), attrValue]
+          prodAttrs.push(attrPair);
+        })
+      })
+      allProdAttrs.push([product.id, prodAttrs]);
+    })
+    allProdAttrs.map(pr => {
+      pr[1].map(atr => {
+        if (isInArr(atr, params)) {
+          if (!prids.includes(pr[0])) {
+            prids.push(pr[0]);
+          }
+        }
+      })
+    })
+
+    let products = allProducts.filter(pr => prids.includes(pr.id));
+    if (params.length === 0) {
+      products = allProducts;
+    }
     return (
       <RouteContainer>
         <FilterBar />
