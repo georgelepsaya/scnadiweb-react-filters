@@ -36,7 +36,7 @@ class CheckBox extends Component {
     return (
       <Container id={this.props.attr.value}>
       <CheckWrapper>
-          <CheckInput onClick={() => this.checkHandler()} checked={(this.props.setFilters.paramsObj[title] === this.props.attr.value) || (this.props.setFilters.paramsObj[title] === "YesNo") || (this.props.setFilters.paramsObj[title] === "NoYes") ? true : false} />
+          <CheckInput onChange={() => this.checkHandler()} checked={(this.props.setFilters.paramsObj[title] === this.props.attr.value) || (this.props.setFilters.paramsObj[title] === "YesNo") || (this.props.setFilters.paramsObj[title] === "NoYes") ? true : false} />
           <CheckLabel>{this.props.attr.value}</CheckLabel>
       </CheckWrapper>
     </Container>

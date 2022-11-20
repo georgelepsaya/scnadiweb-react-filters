@@ -19,7 +19,7 @@ class AttributeFilterColor extends Component {
 
   render() {
     return (
-      <AttributeContainer key={this.props.key}>
+      <AttributeContainer key={this.props.k}>
         <AttributeTitle>{this.props.title}</AttributeTitle>
         <ColorsPick>
           {

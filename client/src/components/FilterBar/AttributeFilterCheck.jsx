@@ -5,11 +5,11 @@ import CheckBox from './CheckBox/CheckBox.jsx';
 class AttributeFilterCheck extends Component {
   render() {
     return (
-      <AttributeContainer>
+      <AttributeContainer key={this.props.k}>
         <AttributeTitle>{this.props.title}</AttributeTitle>
         <CheckBoxGroup>
           {this.props.attr[1].map(atr => {
-            return <CheckBox attr={atr} title={this.props.title} />;
+            return <CheckBox key={atr.id} attr={atr} title={this.props.title} />;
           })}
         </CheckBoxGroup>
       </AttributeContainer>

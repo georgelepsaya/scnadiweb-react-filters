@@ -24,7 +24,7 @@ class AttributeFilterText extends Component {
   render() {
     const title = this.props.title.toLowerCase().replaceAll(' ', '_');
     return (
-      <AttributeContainer key={this.props.key}>
+      <AttributeContainer key={this.props.k}>
         <AttributeTitle>{this.props.title}</AttributeTitle>
           <SelectFilter>
           <AttributeSelect onChange={(e) => this.handleSelectAttr(e)} value={Object.keys(this.props.setFilters.paramsObj).length !== 0 ? this.props.setFilters.paramsObj[title] : ""}>

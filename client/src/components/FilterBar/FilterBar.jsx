@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FilterContainer, FilterTitle, SetFiltersContainer, AttributeTitle, AttributeContainer, ClearFiltersBtn } from './styles.js';
+import { FilterContainer, FilterTitle, SetFiltersContainer, ClearFiltersBtn } from './styles.js';
 import AttributeFilterText from './AttributeFilterText.jsx';
 import AttributeFilterColor from "./AttributeFilterColor.jsx";
 import AttributeFilterCheck from './AttributeFilterCheck.jsx';
@@ -26,16 +26,18 @@ class FilterBar extends Component {
               const attr = attributes[key];
               if (attr[0] === "text" && attr[1][0].value !== "Yes") {
                 return (
-                  <AttributeFilterText updateParamsObj={this.updateParamsObj} key={i} title={key} attr={attr} />
+                  <AttributeFilterText key={i} updateParamsObj={this.updateParamsObj} k={i} title={key} attr={attr} />
                 )
               } else if (attr[0] === "swatch") {
                 return (
-                  <AttributeFilterColor key={i} title={key} attr={attr}/>
+                  <AttributeFilterColor key={i} k={i} title={key} attr={attr}/>
                 )
               } else if (attr[0] === "text" && attr[1][0].value === "Yes") {
                 return (
-                  <AttributeFilterCheck title={key} attr={attr} />
+                  <AttributeFilterCheck key={i} k={i} title={key} attr={attr} />
                 )
+              } else {
+                return <></>;
               }
             })
           }

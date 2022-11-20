@@ -168,10 +168,10 @@ export class ProductListingPage extends Component {
         params.push([key, value]);
       }
     });
-    allProducts.map(product => {
+    allProducts.forEach(product => {
       const prodAttrs = [];
-      product.attributes.map(attr => {
-        attr.items.map(item => {
+      product.attributes.forEach(attr => {
+        attr.items.forEach(item => {
           let attrValue = item.displayValue;
           if (attr.name === "Color") {
             attrValue = item.displayValue.toLowerCase();
@@ -182,8 +182,8 @@ export class ProductListingPage extends Component {
       })
       allProdAttrs.push([product.id, prodAttrs]);
     })
-    allProdAttrs.map(pr => {
-      pr[1].map(atr => {
+    allProdAttrs.forEach(pr => {
+      pr[1].forEach(atr => {
         if (isInArr(atr, params)) {
           if (!prids.includes(pr[0])) {
             prids.push(pr[0]);

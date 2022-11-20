@@ -8,9 +8,9 @@ import { GET_CATEGORIES, GET_CATEGORY, GET_CURRENCIES, GET_PRODUCT, GET_ATTRIBUT
 function withParams(Component, properties, toFetch) {
   
   return (props) => {
-    // useEffect(() => {
-    //   console.clear();
-    // }, [])
+    useEffect(() => {
+      console.clear();
+    }, [])
 
     const [searchParams, setSearchParams] = useSearchParams();
 

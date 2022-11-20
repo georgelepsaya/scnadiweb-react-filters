@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProductListingPage from "../../pages/ProductListingPage";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import styled from "styled-components";
 import ProductDescriptionPage from "../../pages/ProductDescriptionPage";
