@@ -30,7 +30,7 @@ export const SelectFilter = styled.div`
   align-items: center;
   position: relative;
   border: 1px solid rgba(100, 100, 100, 0.4);
-  width: 120px;
+  width: 150px;
   cursor: pointer;
 `;
 
@@ -127,4 +127,8 @@ export const ClearFiltersBtn = styled.button`
   font-size: 16px;
   cursor: pointer;
   margin: auto 0 28px 0;
+`;
+
+export const CheckBoxGroup = styled.div`
+  display: flex;
 `;

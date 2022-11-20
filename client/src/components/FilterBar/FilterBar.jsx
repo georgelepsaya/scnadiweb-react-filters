@@ -11,7 +11,6 @@ class FilterBar extends Component {
     // getting attributes from HOC
     const products = this.props.attributes.category.products;
     // adding them in a readable way in a new object
-    console.log(products);
     const attributes = {};
     products.forEach(attrs => {
       attrs.attributes.forEach(attr => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AttributeTitle, AttributeContainer } from './styles.js';
+import { AttributeTitle, AttributeContainer, CheckBoxGroup } from './styles.js';
 import CheckBox from './CheckBox/CheckBox.jsx';
 
 class AttributeFilterCheck extends Component {
@@ -7,7 +7,11 @@ class AttributeFilterCheck extends Component {
     return (
       <AttributeContainer>
         <AttributeTitle>{this.props.title}</AttributeTitle>
-        <CheckBox attr={this.props.attr} title={this.props.title} />
+        <CheckBoxGroup>
+          {this.props.attr[1].map(atr => {
+            return <CheckBox attr={atr} title={this.props.title} />;
+          })}
+        </CheckBoxGroup>
       </AttributeContainer>
     )
   }

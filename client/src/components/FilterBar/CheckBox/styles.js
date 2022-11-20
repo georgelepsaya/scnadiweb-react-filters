@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin-left: 10px;
+`;
 
 export const CheckWrapper = styled.div`
   display: flex;
@@ -45,14 +47,6 @@ export const CheckLabel = styled.label`
   font-weight: 400;
   font-size: 14px;
   color: #000000;
-  margin-left: 13px;
+  margin-left: 8px;
   cursor: pointer;
-`;
-
-export const SwitchText = styled.p`
-  font-weight: 400;
-  font-size: 12px;
-  color: #cccccc;
-  margin-left: 38px;
-  margin-top: -4px;
 `;

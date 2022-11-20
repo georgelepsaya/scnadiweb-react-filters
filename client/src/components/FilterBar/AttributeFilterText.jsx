@@ -9,7 +9,7 @@ class AttributeFilterText extends Component {
   handleSelectAttr(e) {
     const updObj = {};
     const keyParam = this.props.title.toLowerCase().replaceAll(' ', '_');
-    if (e.target.value != "") {
+    if (e.target.value !== "") {
       updObj[keyParam] = e.target.value;
       this.props.dispatch(updateParams(updObj));
       this.props.setSearchParams({ ...this.props.setFilters.paramsObj, ...updObj });
