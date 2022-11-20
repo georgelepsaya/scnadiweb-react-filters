@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { AttributeTitle, AttributeContainer, ColorOption, ColorsPick, Picker } from './styles.js';
 import withParams from '../withParams.jsx';
-import { updateParams } from '../../features/set_filters/setFiltersSlice.js';
+import { updateParams, removeParam } from '../../features/set_filters/setFiltersSlice.js';
 
 class AttributeFilterColor extends Component {
 
   handleColorPick(value) {
-    this.props.dispatch(updateParams({ color: value }));
-    this.props.setSearchParams({...this.props.setFilters.paramsObj, color: value});
+    const parObj = {...this.props.setFilters.paramsObj};
+    if (parObj.color !== value) {
+      this.props.dispatch(updateParams({ color: value }));
+      this.props.setSearchParams({...parObj, color: value});
+    } else {
+      this.props.dispatch(removeParam("color"));
+      delete parObj["color"];
+      this.props.setSearchParams(parObj);
+    }
   }
 
   render() {
